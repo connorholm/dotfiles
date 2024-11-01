@@ -42,7 +42,7 @@ export SEP2="]"
 . "$DIR/bar-functions/dwm_spotify.sh"
 #. "$DIR/bar-functions/dwm_transmission.sh"
 #. "$DIR/bar-functions/dwm_vpn.sh"
-. "$DIR/bar-functions/dwm_weather.sh"
+# . "$DIR/bar-functions/dwm_weather.sh"
 #. "$DIR/bar-functions/dwm_network_speed.sh"
 
 parallelize() {
@@ -50,7 +50,7 @@ parallelize() {
     do
         printf "Running parallel processes\n"
         #dwm_networkmanager &
-        dwm_weather &
+        # dwm_weather &
         sleep 60
     done
 }
@@ -80,7 +80,7 @@ do
     #upperbar="$upperbar$(dwm_transmission)"
     #upperbar="$upperbar$(dwm_vpn)"
     # upperbar="$upperbar${__DWM_BAR_NETWORKMANAGER__}"
-    upperbar="$upperbar${__DWM_BAR_WEATHER__}"
+    # upperbar="$upperbar${__DWM_BAR_WEATHER__}"
     #upperbar="$upperbar$(dwm_network_speed)"; dwm_network_speed_record
     upperbar="$upperbar$(dwm_date)"
    

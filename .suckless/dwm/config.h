@@ -1,7 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-#include <X11/XF86keysym.h>
-
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -26,7 +24,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5"};
+static const char *tags[] = { "💻", "🎮", "♫", "💡", "📝" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -66,12 +64,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *rangercmd[]  = { "alacritty", "-e", "ranger", NULL };
+static const char *spotifycmd[]  = { "spotify", NULL };
+
 /* volume */
 // open scripts to handle volume and status bar refresh
-static const char *volupcmd[] = {"/home/connor/.local/bin/volup.sh", NULL};
-static const char *voldowncmd[] = {"/home/connor/.local/bin/voldown.sh", NULL};
-static const char *mutecmd[] = {"/home/connor/.local/bin/mute.sh", NULL};
+static const char *volupcmd[] = {"amixer", "set", "Master", "10%+", NULL};
+static const char *voldowncmd[] = {"amixer", "set", "Master", "10%-", NULL};
+static const char *mutecmd[] = {"amixer", "set", "Master", "toggle", NULL};
 
 /* media */
 static const char *playpausecmd[] = { "playerctl", "play-pause", NULL };
@@ -117,12 +116,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-
-	{ MODKEY,                       XK_w,      spawn,          SHCMD("google-chrome-stable --profile-directory='Default'") },
-	{ MODKEY,                       XK_q,      spawn,          SHCMD("google-chrome-stable --profile-directory='Person 1'") },
-	{ MODKEY,                       XK_s,      spawn,          SHCMD("spotify-launcher") },
-	{ MODKEY,                       XK_a,      spawn,          {.v = rangercmd } },
-  
+  { MODKEY,                       XK_w,      spawn,          SHCMD("microsoft-edge-stable") },
+	{ MODKEY,                       XK_q,      spawn,          SHCMD("nautilus") },
+	{ MODKEY,                       XK_s,      spawn,          {.v = spotifycmd } },
   { MODKEY,                            XK_F10, spawn, {.v = mutecmd }},
   { MODKEY,                            XK_F11, spawn, {.v = voldowncmd }},
   { MODKEY,                            XK_F12, spawn, {.v = volupcmd }},
@@ -130,7 +126,7 @@ static const Key keys[] = {
   { MODKEY,                            XK_F7, spawn, {.v = prevcmd }},
   { MODKEY,                            XK_F8, spawn, {.v = playpausecmd }},
   { MODKEY,                            XK_F9, spawn, {.v = nextcmd }},
-
+	
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
